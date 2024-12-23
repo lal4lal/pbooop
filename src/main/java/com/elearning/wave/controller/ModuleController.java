@@ -3,16 +3,14 @@ package com.elearning.wave.controller;
 import com.elearning.wave.dto.ModuleDTO;
 import com.elearning.wave.service.ModuleService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/courses")
+@CrossOrigin
 public class ModuleController {
 
     private final ModuleService moduleService;

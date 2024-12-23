@@ -10,6 +10,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/modules")
+@CrossOrigin
 public class QuizController {
     private final QuizService quizService;
 
