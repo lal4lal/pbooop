@@ -39,6 +39,6 @@ public class QuizService {
     }
 
     public void checkUserSubmission(QuizSubmitDTO quizSubmitDTO) {
-        System.out.println("cek");
+        System.out.println("aduh gantengnya");
     }
 }
