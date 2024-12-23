@@ -1,13 +1,15 @@
 package com.elearning.wave.model.base;
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
+
+import javax.swing.text.html.Option;
 import java.util.List;
 
 @Entity
 @DiscriminatorValue("SINGLE_CHOICE")
 public class SingleChoice extends Question {
 
-    public SingleChoice(long questionId, String questionText, Quiz quiz, List<String> options, List<String> correctAnswer) {
+    public SingleChoice(long questionId, String questionText, Quiz quiz, List<Options> options, List<CorrectAnswer> correctAnswer) {
         super(questionId, questionText, quiz, options, correctAnswer);
     }
 

@@ -7,7 +7,7 @@ import java.util.List;
 @DiscriminatorValue("MULTIPLE_CHOICE")
 public class MultipleChoice extends Question {
 
-    public MultipleChoice(long questionId, String questionText, Quiz quiz, List<String> options, List<String> correctAnswer) {
+    public MultipleChoice(long questionId, String questionText, Quiz quiz, List<Options> options, List<CorrectAnswer> correctAnswer) {
         super(questionId, questionText, quiz, options, correctAnswer);
     }
 

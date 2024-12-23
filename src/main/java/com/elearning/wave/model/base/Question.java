@@ -15,14 +15,12 @@ public abstract class Question {
     @ManyToOne
     @JoinColumn(name = "quiz_id")
     private Quiz quiz;
-    @ElementCollection
-    @CollectionTable(name = "options", joinColumns = @JoinColumn(name = "question_id"))
-    protected List<String> options;
-    @ElementCollection
-    @CollectionTable(name = "correct_answers", joinColumns = @JoinColumn(name = "question_id"))
-    protected List<String> correctAnswer;
+    @OneToMany(mappedBy = "question")
+    protected List<Options> options;
+    @OneToMany(mappedBy = "question")
+    protected List<CorrectAnswer> correctAnswer;
 
-    public Question(long questionId, String questionText, Quiz quiz, List<String> options, List<String> correctAnswer) {
+    public Question(long questionId, String questionText, Quiz quiz, List<Options> options, List<CorrectAnswer> correctAnswer) {
         this.questionId = questionId;
         this.questionText = questionText;
         this.quiz = quiz;
@@ -40,8 +38,8 @@ public abstract class Question {
     public void setQuestionText(String questionText) { this.questionText = questionText; }
     public Quiz getQuiz() { return quiz; }
     public void setQuiz(Quiz quiz) { this.quiz = quiz; }
-    public List<String> getOptions() { return options; }
-    public void setOptions(List<String> options) { this.options = options; }
-    public List<String> getCorrectAnswer() { return correctAnswer; }
-    public void setCorrectAnswer(List<String> correctAnswer) { this.correctAnswer = correctAnswer; }
+    public List<Options> getOptions() { return options; }
+    public void setOptions(List<Options> options) { this.options = options; }
+    public List<CorrectAnswer> getCorrectAnswer() { return correctAnswer; }
+    public void setCorrectAnswer(List<CorrectAnswer> correctAnswer) { this.correctAnswer = correctAnswer; }
 }

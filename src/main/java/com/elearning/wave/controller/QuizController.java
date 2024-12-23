@@ -21,9 +21,4 @@ public class QuizController {
     public Optional<QuizDTO> getQuizOnSpecifiedModule(@PathVariable long moduleId) {
         return quizService.getQuizOnSpecifiedModule(moduleId);
     }
-
-    @PostMapping("/quiz/submit")
-    public void checkQuiz() {
-
-    }
 }

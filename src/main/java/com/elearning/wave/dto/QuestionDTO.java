@@ -1,11 +1,14 @@
 package com.elearning.wave.dto;
 
+import com.elearning.wave.model.base.Options;
+import com.elearning.wave.model.base.Question;
+
 import java.util.List;
 
 public class QuestionDTO {
     private long questionId;
     private String questionText;
-    private List<String> options;
+    private List<Options> options;
 
     public long getQuestionId() {
         return questionId;
@@ -23,11 +26,11 @@ public class QuestionDTO {
         this.questionText = questionText;
     }
 
-    public List<String> getOptions() {
+    public List<Options> getOptions() {
         return options;
     }
 
-    public void setOptions(List<String> options) {
+    public void setOptions(List<Options> options) {
         this.options = options;
     }
 }
