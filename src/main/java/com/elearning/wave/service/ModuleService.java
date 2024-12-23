@@ -22,26 +22,26 @@ public class ModuleService {
         this.quizService = quizService;
     }
 
-    public ModuleDTO convertEntityToDto(Module module) {
+    public ModuleDTO convertEntityToModuleDto(Module module) {
         ModuleDTO moduleDTO = new ModuleDTO();
         moduleDTO.setModuleId(module.getModuleId());
         moduleDTO.setTitle(module.getTitle());
         moduleDTO.setContent(module.getContent());
         moduleDTO.setDescription(module.getDescription());
-        moduleDTO.setQuizDTO(quizService.convertEntityToDto(module.getQuiz()));
+        moduleDTO.setQuizDTO(quizService.convertEntityToQuizDto(module.getQuiz()));
 
         return moduleDTO;
     }
 
     public Optional<ModuleDTO> getModuleByIdOnSpecifiedCourse(long courseId, long modulesId) {
         return moduleRepository.findByCourseCourseIdAndModuleId(courseId, modulesId)
-                .map(this::convertEntityToDto);
+                .map(this::convertEntityToModuleDto);
     }
 
     public List<ModuleDTO> getModulesOnSpecifiedCourse(long courseId) {
         return moduleRepository.findByCourseCourseId(courseId)
                 .stream()
-                .map(this::convertEntityToDto)
+                .map(this::convertEntityToModuleDto)
                 .collect(Collectors.toList());
     }
 }

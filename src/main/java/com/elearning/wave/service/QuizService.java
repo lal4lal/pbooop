@@ -1,6 +1,7 @@
 package com.elearning.wave.service;
 
 import com.elearning.wave.dto.QuizDTO;
+import com.elearning.wave.dto.QuizSubmitDTO;
 import com.elearning.wave.model.base.Quiz;
 import com.elearning.wave.repository.QuizRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,13 +21,13 @@ public class QuizService {
         this.questionService = questionService;
     }
 
-    public QuizDTO convertEntityToDto(Quiz quiz) {
+    public QuizDTO convertEntityToQuizDto(Quiz quiz) {
         QuizDTO quizDTO = new QuizDTO();
         quizDTO.setQuizId(quiz.getQuizId());
         quizDTO.setRewardPoint(quiz.getRewardPoint());
         quizDTO.setQuestionDTO(quiz.getQuestion()
                 .stream()
-                .map(questionService::convertEntityToDto)
+                .map(questionService::convertEntityToQuestionDto)
                 .collect(Collectors.toList()));
 
         return quizDTO;
@@ -34,6 +35,10 @@ public class QuizService {
 
     public Optional<QuizDTO> getQuizOnSpecifiedModule(long moduleId) {
         return quizRepository.findByModulesModuleId(moduleId)
-                .map(this::convertEntityToDto);
+                .map(this::convertEntityToQuizDto);
+    }
+
+    public void checkUserSubmission(QuizSubmitDTO quizSubmitDTO) {
+
     }
 }

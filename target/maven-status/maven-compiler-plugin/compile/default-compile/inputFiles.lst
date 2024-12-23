@@ -8,14 +8,17 @@
 /Users/HilalAbyan/Backend/src/main/java/com/elearning/wave/dto/EnrollRequestDTO.java
 /Users/HilalAbyan/Backend/src/main/java/com/elearning/wave/dto/EnrolledCourseDTO.java
 /Users/HilalAbyan/Backend/src/main/java/com/elearning/wave/dto/ModuleDTO.java
+/Users/HilalAbyan/Backend/src/main/java/com/elearning/wave/dto/OptionDTO.java
 /Users/HilalAbyan/Backend/src/main/java/com/elearning/wave/dto/QuestionDTO.java
 /Users/HilalAbyan/Backend/src/main/java/com/elearning/wave/dto/QuizDTO.java
 /Users/HilalAbyan/Backend/src/main/java/com/elearning/wave/dto/QuizSubmitDTO.java
 /Users/HilalAbyan/Backend/src/main/java/com/elearning/wave/dto/UserDTO.java
+/Users/HilalAbyan/Backend/src/main/java/com/elearning/wave/model/base/CorrectAnswer.java
 /Users/HilalAbyan/Backend/src/main/java/com/elearning/wave/model/base/Course.java
 /Users/HilalAbyan/Backend/src/main/java/com/elearning/wave/model/base/EnrolledCourse.java
 /Users/HilalAbyan/Backend/src/main/java/com/elearning/wave/model/base/Module.java
 /Users/HilalAbyan/Backend/src/main/java/com/elearning/wave/model/base/MultipleChoice.java
+/Users/HilalAbyan/Backend/src/main/java/com/elearning/wave/model/base/Options.java
 /Users/HilalAbyan/Backend/src/main/java/com/elearning/wave/model/base/Question.java
 /Users/HilalAbyan/Backend/src/main/java/com/elearning/wave/model/base/Quiz.java
 /Users/HilalAbyan/Backend/src/main/java/com/elearning/wave/model/base/SingleChoice.java

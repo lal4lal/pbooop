@@ -14,4 +14,37 @@ public class CorrectAnswer {
     @ManyToOne
     @JoinColumn(name = "question_id")
     private Question question;
+
+    public CorrectAnswer() {
+    }
+
+    public CorrectAnswer(long correctAnswerId, String correctAnswer, Question question) {
+        this.correctAnswerId = correctAnswerId;
+        this.correctAnswer = correctAnswer;
+        this.question = question;
+    }
+
+    public long getCorrectAnswerId() {
+        return correctAnswerId;
+    }
+
+    public void setCorrectAnswerId(long correctAnswerId) {
+        this.correctAnswerId = correctAnswerId;
+    }
+
+    public String getCorrectAnswer() {
+        return correctAnswer;
+    }
+
+    public void setCorrectAnswer(String correctAnswer) {
+        this.correctAnswer = correctAnswer;
+    }
+
+    public Question getQuestion() {
+        return question;
+    }
+
+    public void setQuestion(Question question) {
+        this.question = question;
+    }
 }

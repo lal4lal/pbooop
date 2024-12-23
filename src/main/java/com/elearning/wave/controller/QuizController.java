@@ -1,6 +1,7 @@
 package com.elearning.wave.controller;
 
 import com.elearning.wave.dto.QuizDTO;
+import com.elearning.wave.dto.QuizSubmitDTO;
 import com.elearning.wave.service.QuizService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -20,5 +21,10 @@ public class QuizController {
     @GetMapping("/{moduleId}/quiz")
     public Optional<QuizDTO> getQuizOnSpecifiedModule(@PathVariable long moduleId) {
         return quizService.getQuizOnSpecifiedModule(moduleId);
+    }
+
+    @PostMapping("/quiz/submit")
+    public void submitQuiz(@RequestBody QuizSubmitDTO quizSubmitDTO) {
+        quizService.checkUserSubmission(quizSubmitDTO);
     }
 }

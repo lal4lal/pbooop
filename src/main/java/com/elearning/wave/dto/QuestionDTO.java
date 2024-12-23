@@ -8,7 +8,7 @@ import java.util.List;
 public class QuestionDTO {
     private long questionId;
     private String questionText;
-    private List<Options> options;
+    private List<OptionDTO> options;
 
     public long getQuestionId() {
         return questionId;
@@ -26,11 +26,11 @@ public class QuestionDTO {
         this.questionText = questionText;
     }
 
-    public List<Options> getOptions() {
+    public List<OptionDTO> getOptions() {
         return options;
     }
 
-    public void setOptions(List<Options> options) {
+    public void setOptions(List<OptionDTO> options) {
         this.options = options;
     }
 }

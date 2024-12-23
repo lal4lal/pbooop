@@ -9,6 +9,7 @@ com/elearning/wave/dto/ModuleDTO.class
 com/elearning/wave/controller/QuestionController.class
 com/elearning/wave/model/base/Module.class
 com/elearning/wave/dto/UserDTO.class
+com/elearning/wave/model/base/CorrectAnswer.class
 com/elearning/wave/model/base/MultipleChoice.class
 com/elearning/wave/dto/QuestionDTO.class
 com/elearning/wave/model/base/EnrolledCourse.class
@@ -29,6 +30,8 @@ com/elearning/wave/repository/CourseRepository.class
 com/elearning/wave/controller/CourseController.class
 com/elearning/wave/repository/QuestionRepository.class
 com/elearning/wave/dto/QuizDTO.class
+com/elearning/wave/dto/OptionDTO.class
 com/elearning/wave/WaveApplication.class
 com/elearning/wave/service/EnrolledCourseService.class
 com/elearning/wave/model/base/Question.class
+com/elearning/wave/model/base/Options.class

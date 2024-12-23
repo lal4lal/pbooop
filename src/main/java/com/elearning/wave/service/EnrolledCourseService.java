@@ -32,7 +32,7 @@ public class EnrolledCourseService {
 
     public EnrolledCourseDTO covertEntityToEnrolledCourseDto(EnrolledCourse enrolledCourse) {
         EnrolledCourseDTO enrolledCourseDTO = new EnrolledCourseDTO();
-        enrolledCourseDTO.setCourseDTO(courseService.convertEntityToDto(enrolledCourse.getCourse()));
+        enrolledCourseDTO.setCourseDTO(courseService.convertEntityToCourseDto(enrolledCourse.getCourse()));
         enrolledCourseDTO.setTotalPointEarned(enrolledCourse.getTotalPointEarned());
 
         return enrolledCourseDTO;

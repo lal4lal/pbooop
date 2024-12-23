@@ -17,7 +17,7 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    public UserDTO convertEntityToDto(Users users) {
+    public UserDTO convertEntityToUserDto(Users users) {
         UserDTO userDTO = new UserDTO();
         userDTO.setUserId(users.getUserId());
         userDTO.setEmail(users.getEmail());
@@ -28,7 +28,7 @@ public class UserService {
 
     public Optional<UserDTO> getUserById(long userId) {
         return userRepository.findById(userId)
-                .map(this::convertEntityToDto);
+                .map(this::convertEntityToUserDto);
     }
 
     public Optional<Users> findById(long userId) {

@@ -22,14 +22,14 @@ public class CourseService {
         this.moduleService = moduleService;
     }
 
-    public CourseDTO convertEntityToDto(Course course) {
+    public CourseDTO convertEntityToCourseDto(Course course) {
         CourseDTO courseDTO = new CourseDTO();
         courseDTO.setCourseId(course.getCourseId());
         courseDTO.setDescription(course.getDescription());
         courseDTO.setTitle(course.getTitle());
         courseDTO.setModuleDTOS(course.getModules()
                 .stream()
-                .map(moduleService::convertEntityToDto)
+                .map(moduleService::convertEntityToModuleDto)
                 .collect(Collectors.toList()));
         return courseDTO;
     }
@@ -37,13 +37,13 @@ public class CourseService {
     public List<CourseDTO> getAllCourse() {
         return courseRepository.findAll()
                 .stream()
-                .map(this::convertEntityToDto)
+                .map(this::convertEntityToCourseDto)
                 .collect(Collectors.toList());
     }
 
     public Optional<CourseDTO> getCourseById(long id) {
         return courseRepository.findById(id)
-                .map(this::convertEntityToDto);
+                .map(this::convertEntityToCourseDto);
     }
 
     public Optional<Course> findById(long id) {
