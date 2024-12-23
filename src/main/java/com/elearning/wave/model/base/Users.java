@@ -9,20 +9,39 @@ public class Users {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
     private long userId;
+    private String fullname;
     private String username;
     private String email;
     private String password;
     @OneToMany(mappedBy = "users")
     private List<EnrolledCourse> enrolledCourses;
 
-    public Users(long userId, String username, String email, String password) {
+    public Users(long userId, String fullname, String username, String email, String password, List<EnrolledCourse> enrolledCourses) {
         this.userId = userId;
+        this.fullname = fullname;
         this.username = username;
         this.email = email;
         this.password = password;
+        this.enrolledCourses = enrolledCourses;
     }
 
     public Users() {
+    }
+
+    public String getFullname() {
+        return fullname;
+    }
+
+    public void setFullname(String fullname) {
+        this.fullname = fullname;
+    }
+
+    public List<EnrolledCourse> getEnrolledCourses() {
+        return enrolledCourses;
+    }
+
+    public void setEnrolledCourses(List<EnrolledCourse> enrolledCourses) {
+        this.enrolledCourses = enrolledCourses;
     }
 
     public long getUserId() { return userId; }

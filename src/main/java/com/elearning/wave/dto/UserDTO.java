@@ -2,8 +2,17 @@ package com.elearning.wave.dto;
 
 public class UserDTO {
     private long userId;
+    private String fullname;
     private String username;
     private String email;
+
+    public String getFullname() {
+        return fullname;
+    }
+
+    public void setFullname(String fullname) {
+        this.fullname = fullname;
+    }
 
     public long getUserId() {
         return userId;

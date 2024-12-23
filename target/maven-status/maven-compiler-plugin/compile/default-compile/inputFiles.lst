@@ -12,6 +12,7 @@
 /Users/HilalAbyan/Backend/src/main/java/com/elearning/wave/dto/QuestionDTO.java
 /Users/HilalAbyan/Backend/src/main/java/com/elearning/wave/dto/QuizDTO.java
 /Users/HilalAbyan/Backend/src/main/java/com/elearning/wave/dto/QuizSubmitDTO.java
+/Users/HilalAbyan/Backend/src/main/java/com/elearning/wave/dto/UserAnswerDTO.java
 /Users/HilalAbyan/Backend/src/main/java/com/elearning/wave/dto/UserDTO.java
 /Users/HilalAbyan/Backend/src/main/java/com/elearning/wave/model/base/CorrectAnswer.java
 /Users/HilalAbyan/Backend/src/main/java/com/elearning/wave/model/base/Course.java

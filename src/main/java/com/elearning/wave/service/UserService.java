@@ -20,6 +20,7 @@ public class UserService {
     public UserDTO convertEntityToUserDto(Users users) {
         UserDTO userDTO = new UserDTO();
         userDTO.setUserId(users.getUserId());
+        userDTO.setFullname(users.getFullname());
         userDTO.setEmail(users.getEmail());
         userDTO.setUsername(users.getUsername());
 

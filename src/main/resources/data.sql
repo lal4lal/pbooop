@@ -1,4 +1,4 @@
-INSERT INTO users (username, email, password) VALUES ('lalalal', 'lalalal@gmail.com', 'lalalal');
+INSERT INTO users (username, fullname, email, password) VALUES ('lalalal', 'Muhammad Hilal Abyan', 'lalalal@gmail.com', 'lalalal');
 
 INSERT INTO course (title, description) VALUES ('Introduction to Java', 'Learn the basics of Java programming.');
 INSERT INTO course (title, description) VALUES ('Advanced Java', 'Deep dive into advanced Java topics.');
