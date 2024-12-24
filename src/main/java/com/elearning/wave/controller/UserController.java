@@ -2,6 +2,7 @@ package com.elearning.wave.controller;
 
 import com.elearning.wave.dto.EnrollRequestDTO;
 import com.elearning.wave.dto.EnrolledCourseDTO;
+import com.elearning.wave.dto.RegisterDTO;
 import com.elearning.wave.dto.UserDTO;
 import com.elearning.wave.service.EnrolledCourseService;
 import com.elearning.wave.service.UserService;
@@ -36,5 +37,10 @@ public class UserController {
     @PostMapping("/enroll")
     public void enrollCourse(@RequestBody EnrollRequestDTO enrollRequestDTO) {
         enrolledCourseService.enrollCourse(enrollRequestDTO);
+    }
+
+    @PostMapping("/register")
+    public void register(@RequestBody RegisterDTO registerDTO) {
+        userService.register(registerDTO);
     }
 }

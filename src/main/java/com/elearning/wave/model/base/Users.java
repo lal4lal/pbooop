@@ -10,7 +10,6 @@ public class Users {
     @Column(name = "user_id")
     private long userId;
     private String fullname;
-    private String username;
     private String email;
     private String password;
     @OneToMany(mappedBy = "users")
@@ -19,7 +18,6 @@ public class Users {
     public Users(long userId, String fullname, String username, String email, String password, List<EnrolledCourse> enrolledCourses) {
         this.userId = userId;
         this.fullname = fullname;
-        this.username = username;
         this.email = email;
         this.password = password;
         this.enrolledCourses = enrolledCourses;
@@ -46,8 +44,6 @@ public class Users {
 
     public long getUserId() { return userId; }
     public void setUserId(long userId) { this.userId = userId; }
-    public String getUsername() { return username; }
-    public void setUsername(String username) { this.username = username; }
     public String getEmail() { return email; }
     public void setEmail(String email) { this.email = email; }
     public String getPassword() { return password; }
