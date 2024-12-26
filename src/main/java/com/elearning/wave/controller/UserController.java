@@ -1,12 +1,11 @@
 package com.elearning.wave.controller;
 
-import com.elearning.wave.dto.EnrollRequestDTO;
-import com.elearning.wave.dto.EnrolledCourseDTO;
-import com.elearning.wave.dto.RegisterDTO;
-import com.elearning.wave.dto.UserDTO;
+import com.elearning.wave.dto.*;
 import com.elearning.wave.service.EnrolledCourseService;
 import com.elearning.wave.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
@@ -39,8 +38,23 @@ public class UserController {
         enrolledCourseService.enrollCourse(enrollRequestDTO);
     }
 
+    @PostMapping("/login")
+    public ResponseEntity<?> login(@RequestBody LoginDTO loginDTO) {
+        try {
+            AuthResponseDTO response = userService.authenticateUser(loginDTO);
+            return new ResponseEntity<>(response, HttpStatus.OK);
+        } catch (IllegalArgumentException e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+    }
+
     @PostMapping("/register")
-    public void register(@RequestBody RegisterDTO registerDTO) {
-        userService.register(registerDTO);
+    public ResponseEntity<String> register(@RequestBody RegisterDTO registerDTO) {
+        try {
+            String response = userService.register(registerDTO);
+            return new ResponseEntity<>(response,HttpStatus.OK);
+        } catch (IllegalArgumentException err) {
+            return new ResponseEntity<>(err.getMessage(), HttpStatus.BAD_REQUEST);
+        }
     }
 }
