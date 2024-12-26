@@ -35,8 +35,12 @@ public class UserController {
 
     @GetMapping("/{userId}/courses")
     public ResponseEntity<List<EnrolledCourseDTO>> getUserEnrolledCoursesById(@PathVariable long userId) {
-        List<EnrolledCourseDTO> enrolledCourseDTOS = enrolledCourseService.getUserEnrolledCoursesById(userId);
-        return new ResponseEntity<>(enrolledCourseDTOS, HttpStatus.FOUND);
+        try {
+            List<EnrolledCourseDTO> enrolledCourseDTOS = enrolledCourseService.getUserEnrolledCoursesById(userId);
+            return new ResponseEntity<>(enrolledCourseDTOS, HttpStatus.FOUND);
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        }
     }
 
     @PostMapping("/enroll")

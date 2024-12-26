@@ -39,12 +39,13 @@ public class EnrolledCourseService {
     }
 
     public List<EnrolledCourseDTO> getUserEnrolledCoursesById(long userId) {
-        List<EnrolledCourseDTO> enrolledCourseDTOS = enrolledCourseRepository
+        List<EnrolledCourse> enrolledCourse = enrolledCourseRepository
                 .findAllByUsersUserId(userId)
+                .orElseThrow(() -> new IllegalArgumentException("User hasn't enroll any course"));
+        return enrolledCourse
                 .stream()
                 .map(this::covertEntityToEnrolledCourseDto)
                 .collect(Collectors.toList());
-        return enrolledCourseDTOS;
     }
 
     public String enrollCourse(EnrollRequestDTO enrollRequestDTO) {
