@@ -5,7 +5,6 @@ public class ModuleDTO {
     private String title;
     private String description;
     private String content;
-    private QuizDTO quizDTO;
 
     public long getModuleId() {
         return moduleId;
@@ -37,13 +36,5 @@ public class ModuleDTO {
 
     public void setContent(String content) {
         this.content = content;
-    }
-
-    public QuizDTO getQuizDTO() {
-        return quizDTO;
-    }
-
-    public void setQuizDTO(QuizDTO quizDTO) {
-        this.quizDTO = quizDTO;
     }
 }

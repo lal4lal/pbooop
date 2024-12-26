@@ -39,20 +39,22 @@ public class EnrolledCourseService {
     }
 
     public List<EnrolledCourseDTO> getUserEnrolledCoursesById(long userId) {
-        return enrolledCourseRepository.findAllByUsersUserId(userId)
+        List<EnrolledCourseDTO> enrolledCourseDTOS = enrolledCourseRepository
+                .findAllByUsersUserId(userId)
                 .stream()
                 .map(this::covertEntityToEnrolledCourseDto)
                 .collect(Collectors.toList());
+        return enrolledCourseDTOS;
     }
 
-    public void enrollCourse(EnrollRequestDTO enrollRequestDTO) {
+    public String enrollCourse(EnrollRequestDTO enrollRequestDTO) {
         Optional<EnrolledCourse> enrolledCourseOptional = enrolledCourseRepository.findByUsersUserIdAndCourseCourseId(
                 enrollRequestDTO.getUserId(),
                 enrollRequestDTO.getCourseId()
         );
 
         if (enrolledCourseOptional.isPresent()) {
-            throw new IllegalStateException("Course Already Taken");
+            throw new IllegalArgumentException("Course Already Taken");
         }
 
         Optional<Users> users = Optional.ofNullable(userService.findById(enrollRequestDTO.getUserId())
@@ -64,5 +66,7 @@ public class EnrolledCourseService {
         enrolledCourse.setUsers(users.get());
         enrolledCourse.setCourse(course.get());
         enrolledCourseRepository.save(enrolledCourse);
+
+        return "Course enrolled success";
     }
 }

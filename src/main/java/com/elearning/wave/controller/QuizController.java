@@ -4,6 +4,8 @@ import com.elearning.wave.dto.QuizDTO;
 import com.elearning.wave.dto.QuizSubmitDTO;
 import com.elearning.wave.service.QuizService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
@@ -20,8 +22,12 @@ public class QuizController {
     }
 
     @GetMapping("/{moduleId}/quiz")
-    public Optional<QuizDTO> getQuizOnSpecifiedModule(@PathVariable long moduleId) {
-        return quizService.getQuizOnSpecifiedModule(moduleId);
+    public ResponseEntity<QuizDTO> getQuizOnSpecifiedModule(@PathVariable long moduleId) {
+        Optional<QuizDTO> quizDTO = quizService.getQuizOnSpecifiedModule(moduleId);
+        if (quizDTO.isPresent()) {
+            return new ResponseEntity<>(quizDTO.get(), HttpStatus.FOUND);
+        }
+        return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
     }
 
     @PostMapping("/quiz/submit")

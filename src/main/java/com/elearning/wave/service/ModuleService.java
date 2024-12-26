@@ -14,12 +14,10 @@ import java.util.stream.Collectors;
 public class ModuleService {
 
     private final ModuleRepository moduleRepository;
-    private final QuizService quizService;
 
     @Autowired
-    public ModuleService(ModuleRepository moduleRepository, QuizService quizService) {
+    public ModuleService(ModuleRepository moduleRepository) {
         this.moduleRepository = moduleRepository;
-        this.quizService = quizService;
     }
 
     public ModuleDTO convertEntityToModuleDto(Module module) {
@@ -28,7 +26,6 @@ public class ModuleService {
         moduleDTO.setTitle(module.getTitle());
         moduleDTO.setContent(module.getContent());
         moduleDTO.setDescription(module.getDescription());
-        moduleDTO.setQuizDTO(quizService.convertEntityToQuizDto(module.getQuiz()));
 
         return moduleDTO;
     }

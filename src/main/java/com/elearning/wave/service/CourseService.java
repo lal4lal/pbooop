@@ -14,12 +14,10 @@ import java.util.stream.Collectors;
 public class CourseService {
 
     private final CourseRepository courseRepository;
-    private final ModuleService moduleService;
 
     @Autowired
-    public CourseService(CourseRepository courseRepository, ModuleService moduleService) {
+    public CourseService(CourseRepository courseRepository) {
         this.courseRepository = courseRepository;
-        this.moduleService = moduleService;
     }
 
     public CourseDTO convertEntityToCourseDto(Course course) {
@@ -27,10 +25,7 @@ public class CourseService {
         courseDTO.setCourseId(course.getCourseId());
         courseDTO.setDescription(course.getDescription());
         courseDTO.setTitle(course.getTitle());
-        courseDTO.setModuleDTOS(course.getModules()
-                .stream()
-                .map(moduleService::convertEntityToModuleDto)
-                .collect(Collectors.toList()));
+
         return courseDTO;
     }
 

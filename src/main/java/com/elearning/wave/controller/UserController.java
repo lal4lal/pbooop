@@ -24,18 +24,29 @@ public class UserController {
     }
 
     @GetMapping("/{userId}")
-    public Optional<UserDTO> getUserById(@PathVariable long userId) {
-        return userService.getUserById(userId);
+    public ResponseEntity<UserDTO> getUserById(@PathVariable long userId) {
+        try {
+            UserDTO userDTO = userService.getUserById(userId);
+            return new ResponseEntity<>(userDTO, HttpStatus.FOUND);
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        }
     }
 
     @GetMapping("/{userId}/courses")
-    public List<EnrolledCourseDTO> getUserEnrolledCoursesById(@PathVariable long userId) {
-        return enrolledCourseService.getUserEnrolledCoursesById(userId);
+    public ResponseEntity<List<EnrolledCourseDTO>> getUserEnrolledCoursesById(@PathVariable long userId) {
+        List<EnrolledCourseDTO> enrolledCourseDTOS = enrolledCourseService.getUserEnrolledCoursesById(userId);
+        return new ResponseEntity<>(enrolledCourseDTOS, HttpStatus.FOUND);
     }
 
     @PostMapping("/enroll")
-    public void enrollCourse(@RequestBody EnrollRequestDTO enrollRequestDTO) {
-        enrolledCourseService.enrollCourse(enrollRequestDTO);
+    public ResponseEntity<String> enrollCourse(@RequestBody EnrollRequestDTO enrollRequestDTO) {
+        try {
+            String message = enrolledCourseService.enrollCourse(enrollRequestDTO);
+            return new ResponseEntity<>(message, HttpStatus.OK);
+        } catch (IllegalArgumentException err) {
+            return new ResponseEntity<>(err.getMessage(), HttpStatus.BAD_REQUEST);
+        }
     }
 
     @PostMapping("/login")

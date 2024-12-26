@@ -6,7 +6,6 @@ public class CourseDTO {
     private long courseId;
     private String title;
     private String description;
-    private List<ModuleDTO> moduleDTOS;
 
     public long getCourseId() {
         return courseId;
@@ -30,13 +29,5 @@ public class CourseDTO {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public List<ModuleDTO> getModuleDTOS() {
-        return moduleDTOS;
-    }
-
-    public void setModuleDTOS(List<ModuleDTO> moduleDTOS) {
-        this.moduleDTOS = moduleDTOS;
     }
 }

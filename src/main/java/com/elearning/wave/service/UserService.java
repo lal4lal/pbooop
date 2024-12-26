@@ -41,9 +41,9 @@ public class UserService {
         return userDTO;
     }
 
-    public Optional<UserDTO> getUserById(long userId) {
-        return userRepository.findById(userId)
-                .map(this::convertEntityToUserDto);
+    public UserDTO getUserById(long userId) {
+        Users users = userRepository.findById(userId).orElseThrow(() -> new IllegalArgumentException("User not found"));
+        return convertEntityToUserDto(users);
     }
 
     public Optional<Users> findById(long userId) {
@@ -73,7 +73,6 @@ public class UserService {
                     )
             );
             SecurityContextHolder.getContext().setAuthentication(authentication);
-            System.out.println(authentication);
             String token = jwtGenerator.generateToken(authentication);
             return new AuthResponseDTO(token);
         } catch (Exception e) {
