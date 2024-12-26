@@ -30,13 +30,14 @@ public class ModuleService {
         return moduleDTO;
     }
 
-    public Optional<ModuleDTO> getModuleByIdOnSpecifiedCourse(long courseId, long modulesId) {
-        return moduleRepository.findByCourseCourseIdAndModuleId(courseId, modulesId)
-                .map(this::convertEntityToModuleDto);
+    public ModuleDTO getModuleByIdOnSpecifiedCourse(long courseId, long modulesId) {
+        Module module = moduleRepository.findByCourseCourseIdAndModuleId(courseId, modulesId).orElseThrow(()->new IllegalArgumentException("module not found"));
+        return convertEntityToModuleDto(module);
     }
 
     public List<ModuleDTO> getModulesOnSpecifiedCourse(long courseId) {
-        return moduleRepository.findByCourseCourseId(courseId)
+        List<Module> module = moduleRepository.findByCourseCourseId(courseId).orElseThrow(()->new IllegalArgumentException("module not found"));
+        return module
                 .stream()
                 .map(this::convertEntityToModuleDto)
                 .collect(Collectors.toList());
