@@ -42,14 +42,16 @@ public class QuestionService {
     }
 
     public List<QuestionDTO> getAllQuestionOnSpecifiedQuiz(long quizId) {
-        return questionRepository.findByQuizQuizId(quizId)
+        List<Question> question = questionRepository.findByQuizQuizId(quizId).orElseThrow(()-> new IllegalArgumentException("question not found"));
+        return question
                 .stream()
                 .map(this::convertEntityToQuestionDto)
                 .collect(Collectors.toList());
     }
 
     public QuestionDTO getQuestionByIdOnSpecifiedQuiz(long quizId, long questionId) {
-        return convertEntityToQuestionDto(questionRepository.findByQuizQuizIdAndQuestionId(quizId, questionId));
+        Question question = questionRepository.findByQuizQuizIdAndQuestionId(quizId, questionId).orElseThrow(()-> new IllegalArgumentException("question not found"));
+        return convertEntityToQuestionDto(question);
     }
 
 //    public Question

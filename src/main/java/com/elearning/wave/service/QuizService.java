@@ -33,9 +33,9 @@ public class QuizService {
         return quizDTO;
     }
 
-    public Optional<QuizDTO> getQuizOnSpecifiedModule(long moduleId) {
-        return quizRepository.findByModulesModuleId(moduleId)
-                .map(this::convertEntityToQuizDto);
+    public QuizDTO getQuizOnSpecifiedModule(long moduleId) {
+        Quiz quiz = quizRepository.findByModulesModuleId(moduleId).orElseThrow(()->new IllegalArgumentException("quiz not found"));
+        return convertEntityToQuizDto(quiz);
     }
 
     public void checkUserSubmission(QuizSubmitDTO quizSubmitDTO) {

@@ -30,15 +30,19 @@ public class CourseService {
     }
 
     public List<CourseDTO> getAllCourse() {
-        return courseRepository.findAll()
+        List<Course> courses = courseRepository.findAll();
+        if (courses.isEmpty()) {
+            throw new IllegalArgumentException("course not found");
+        }
+        return courses
                 .stream()
                 .map(this::convertEntityToCourseDto)
                 .collect(Collectors.toList());
     }
 
-    public Optional<CourseDTO> getCourseById(long id) {
-        return courseRepository.findById(id)
-                .map(this::convertEntityToCourseDto);
+    public CourseDTO getCourseById(long id) {
+        Course course = courseRepository.findById(id).orElseThrow(()->new IllegalArgumentException("course not found"));
+        return convertEntityToCourseDto(course);
     }
 
     public Optional<Course> findById(long id) {

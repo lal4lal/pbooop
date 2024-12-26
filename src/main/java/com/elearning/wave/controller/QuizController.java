@@ -23,11 +23,12 @@ public class QuizController {
 
     @GetMapping("/{moduleId}/quiz")
     public ResponseEntity<QuizDTO> getQuizOnSpecifiedModule(@PathVariable long moduleId) {
-        Optional<QuizDTO> quizDTO = quizService.getQuizOnSpecifiedModule(moduleId);
-        if (quizDTO.isPresent()) {
-            return new ResponseEntity<>(quizDTO.get(), HttpStatus.FOUND);
+        try {
+            QuizDTO quizDTO = quizService.getQuizOnSpecifiedModule(moduleId);
+            return new ResponseEntity<>(quizDTO, HttpStatus.FOUND);
+        }catch (Exception e){
+            return new ResponseEntity<>(null,HttpStatus.NOT_FOUND);
         }
-        return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
     }
 
     @PostMapping("/quiz/submit")

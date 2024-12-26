@@ -1,10 +1,15 @@
 package com.elearning.wave.controller;
 
 import com.elearning.wave.dto.QuestionDTO;
+import com.elearning.wave.model.base.Quiz;
 import com.elearning.wave.service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.net.http.HttpResponse;
 import java.util.List;
 
 @RestController
@@ -19,13 +24,24 @@ public class QuestionController {
     }
 
     @GetMapping("/{quizId}")
-    public List<QuestionDTO> getAllQuestionOnSpecifiedQuiz(@PathVariable long quizId) {
-        return questionService.getAllQuestionOnSpecifiedQuiz(quizId);
+    public ResponseEntity<List<QuestionDTO>> getAllQuestionOnSpecifiedQuiz(@PathVariable long quizId) {
+        try {
+        List<QuestionDTO> questionDTOS = questionService.getAllQuestionOnSpecifiedQuiz(quizId);
+        return new ResponseEntity<>(questionDTOS, HttpStatus.FOUND);
+        }catch (Exception e){
+            return new ResponseEntity<>(null,HttpStatus.NOT_FOUND);
+        }
     }
 
     @GetMapping("/{quizId}/question/{questionId}")
-    public QuestionDTO getQuestionByIdOnSpecifiedQuiz(@PathVariable long quizId, @PathVariable long questionId) {
-        return questionService.getQuestionByIdOnSpecifiedQuiz(quizId, questionId);
+    public ResponseEntity<QuestionDTO> getQuestionByIdOnSpecifiedQuiz(@PathVariable long quizId, @PathVariable long questionId) {
+        try {
+            QuestionDTO questionDTO = questionService.getQuestionByIdOnSpecifiedQuiz(quizId, questionId);
+            return new ResponseEntity<>(questionDTO, HttpStatus.FOUND);
+        }catch (Exception e){
+            return new ResponseEntity<>(null,HttpStatus.NOT_FOUND);
+        }
     }
+
 
 }
