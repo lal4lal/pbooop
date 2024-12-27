@@ -41,11 +41,6 @@ public class UserService {
         return userDTO;
     }
 
-    public UserDTO getUserById(long userId) {
-        Users users = userRepository.findById(userId).orElseThrow(() -> new IllegalArgumentException("User not found"));
-        return convertEntityToUserDto(users);
-    }
-
     public Optional<Users> findById(long userId) {
         return userRepository.findById(userId);
     }
@@ -74,7 +69,8 @@ public class UserService {
             );
             SecurityContextHolder.getContext().setAuthentication(authentication);
             String token = jwtGenerator.generateToken(authentication);
-            return new AuthResponseDTO(token);
+            Optional<Users> usersOptional = userRepository.findByEmail(loginDTO.getEmail());
+            return new AuthResponseDTO(token, convertEntityToUserDto(usersOptional.get()));
         } catch (Exception e) {
             throw new IllegalArgumentException("Invalid email or password", e);
         }

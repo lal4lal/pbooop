@@ -3,6 +3,7 @@ package com.elearning.wave.service;
 import com.elearning.wave.dto.QuizDTO;
 import com.elearning.wave.dto.QuizSubmitDTO;
 import com.elearning.wave.model.base.Quiz;
+import com.elearning.wave.model.base.SingleChoice;
 import com.elearning.wave.repository.QuizRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -34,7 +35,9 @@ public class QuizService {
     }
 
     public QuizDTO getQuizOnSpecifiedModule(long moduleId) {
-        Quiz quiz = quizRepository.findByModulesModuleId(moduleId).orElseThrow(()->new IllegalArgumentException("quiz not found"));
+        Quiz quiz = quizRepository
+                .findByModulesModuleId(moduleId)
+                .orElseThrow(()->new IllegalArgumentException("quiz not found"));
         return convertEntityToQuizDto(quiz);
     }
 

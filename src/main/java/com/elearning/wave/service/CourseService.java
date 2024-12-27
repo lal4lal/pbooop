@@ -41,7 +41,9 @@ public class CourseService {
     }
 
     public CourseDTO getCourseById(long id) {
-        Course course = courseRepository.findById(id).orElseThrow(()->new IllegalArgumentException("course not found"));
+        Course course = courseRepository
+                .findById(id)
+                .orElseThrow(()->new IllegalArgumentException("course not found"));
         return convertEntityToCourseDto(course);
     }
 

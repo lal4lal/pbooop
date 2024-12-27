@@ -23,16 +23,6 @@ public class UserController {
         this.enrolledCourseService = enrolledCourseService;
     }
 
-    @GetMapping("/{userId}")
-    public ResponseEntity<UserDTO> getUserById(@PathVariable long userId) {
-        try {
-            UserDTO userDTO = userService.getUserById(userId);
-            return new ResponseEntity<>(userDTO, HttpStatus.FOUND);
-        } catch (Exception e) {
-            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
-        }
-    }
-
     @GetMapping("/{userId}/courses")
     public ResponseEntity<List<EnrolledCourseDTO>> getUserEnrolledCoursesById(@PathVariable long userId) {
         try {

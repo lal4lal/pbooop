@@ -31,12 +31,16 @@ public class ModuleService {
     }
 
     public ModuleDTO getModuleByIdOnSpecifiedCourse(long courseId, long modulesId) {
-        Module module = moduleRepository.findByCourseCourseIdAndModuleId(courseId, modulesId).orElseThrow(()->new IllegalArgumentException("module not found"));
+        Module module = moduleRepository
+                .findByCourseCourseIdAndModuleId(courseId, modulesId)
+                .orElseThrow(()->new IllegalArgumentException("module not found"));
         return convertEntityToModuleDto(module);
     }
 
     public List<ModuleDTO> getModulesOnSpecifiedCourse(long courseId) {
-        List<Module> module = moduleRepository.findByCourseCourseId(courseId).orElseThrow(()->new IllegalArgumentException("module not found"));
+        List<Module> module = moduleRepository
+                .findByCourseCourseId(courseId)
+                .orElseThrow(()->new IllegalArgumentException("module not found"));
         return module
                 .stream()
                 .map(this::convertEntityToModuleDto)

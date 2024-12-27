@@ -26,10 +26,10 @@ public class QuestionController {
     @GetMapping("/{quizId}")
     public ResponseEntity<List<QuestionDTO>> getAllQuestionOnSpecifiedQuiz(@PathVariable long quizId) {
         try {
-        List<QuestionDTO> questionDTOS = questionService.getAllQuestionOnSpecifiedQuiz(quizId);
-        return new ResponseEntity<>(questionDTOS, HttpStatus.FOUND);
-        }catch (Exception e){
-            return new ResponseEntity<>(null,HttpStatus.NOT_FOUND);
+            List<QuestionDTO> questionDTOS = questionService.getAllQuestionOnSpecifiedQuiz(quizId);
+            return new ResponseEntity<>(questionDTOS, HttpStatus.FOUND);
+        } catch (Exception e){
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         }
     }
 

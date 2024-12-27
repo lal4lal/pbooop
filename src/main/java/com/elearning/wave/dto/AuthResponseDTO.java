@@ -3,9 +3,11 @@ package com.elearning.wave.dto;
 public class AuthResponseDTO {
     private String accessToken;
     private String tokenType = "Bearer ";
+    private UserDTO userDTO;
 
-    public AuthResponseDTO(String accessToken) {
+    public AuthResponseDTO(String accessToken, UserDTO userDTO) {
         this.accessToken = accessToken;
+        this.userDTO = userDTO;
     }
 
     public String getAccessToken() {
@@ -22,5 +24,13 @@ public class AuthResponseDTO {
 
     public void setTokenType(String tokenType) {
         this.tokenType = tokenType;
+    }
+
+    public UserDTO getUserDTO() {
+        return userDTO;
+    }
+
+    public void setUserDTO(UserDTO userDTO) {
+        this.userDTO = userDTO;
     }
 }

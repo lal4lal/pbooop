@@ -42,7 +42,9 @@ public class QuestionService {
     }
 
     public List<QuestionDTO> getAllQuestionOnSpecifiedQuiz(long quizId) {
-        List<Question> question = questionRepository.findByQuizQuizId(quizId).orElseThrow(()-> new IllegalArgumentException("question not found"));
+        List<Question> question = questionRepository
+                .findByQuizQuizId(quizId)
+                .orElseThrow(()-> new IllegalArgumentException("question not found"));
         return question
                 .stream()
                 .map(this::convertEntityToQuestionDto)
@@ -50,9 +52,9 @@ public class QuestionService {
     }
 
     public QuestionDTO getQuestionByIdOnSpecifiedQuiz(long quizId, long questionId) {
-        Question question = questionRepository.findByQuizQuizIdAndQuestionId(quizId, questionId).orElseThrow(()-> new IllegalArgumentException("question not found"));
+        Question question = questionRepository
+                .findByQuizQuizIdAndQuestionId(quizId, questionId)
+                .orElseThrow(()-> new IllegalArgumentException("question not found"));
         return convertEntityToQuestionDto(question);
     }
-
-//    public Question
 }
