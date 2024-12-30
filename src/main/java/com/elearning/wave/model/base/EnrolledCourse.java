@@ -1,5 +1,8 @@
 package com.elearning.wave.model.base;
 import jakarta.persistence.*;
+import java.util.List;
+import java.util.ArrayList;
+
 
 @Entity
 @Table(name = "enrolled_course")
@@ -15,15 +18,25 @@ public class EnrolledCourse {
     @JoinColumn(name = "course_id")
     private Course course;
     private int totalPointEarned;
+    @ElementCollection
+    private List<Long> accessedModules = new ArrayList<>();
+
 
     public EnrolledCourse(long enrollId, Users users, Course course) {
         this.enrollId = enrollId;
         this.users = users;
         this.course = course;
-        this.totalPointEarned = 0;
     }
 
     public EnrolledCourse() {
+    }
+
+    public boolean hasAccessedModule(long moduleId) {
+        return accessedModules.contains(moduleId);
+    }
+
+    public void grantAccessToModule(long moduleId) {
+        accessedModules.add(moduleId);
     }
 
     public long getEnrollId() { return enrollId; }

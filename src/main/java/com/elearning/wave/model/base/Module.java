@@ -11,11 +11,14 @@ public class Module {
     private String title;
     private String description;
     private String content;
+    private static int POINT_REQUIRED = 10;
     @ManyToOne
     @JoinColumn(name = "course_id")
     private Course course;
     @OneToOne(mappedBy = "modules")
     private Quiz quiz;
+
+
 
     public Module(long moduleId, String title, String description, String content, Course course, Quiz quiz) {
         this.moduleId = moduleId;
@@ -27,6 +30,11 @@ public class Module {
     }
 
     public Module() {
+    }
+
+
+    public static int getPointRequired() {
+        return POINT_REQUIRED;
     }
 
     public long getModuleId() { return moduleId; }
