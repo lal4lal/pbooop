@@ -2,7 +2,9 @@ package com.elearning.wave.service;
 
 import com.elearning.wave.dto.ModuleDTO;
 import com.elearning.wave.model.base.Module;
+import com.elearning.wave.model.base.EnrolledCourse;
 import com.elearning.wave.repository.ModuleRepository;
+import com.elearning.wave.repository.EnrolledCourseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,10 +16,12 @@ import java.util.stream.Collectors;
 public class ModuleService {
 
     private final ModuleRepository moduleRepository;
+    private final EnrolledCourseRepository enrolledCourseRepository;
 
     @Autowired
-    public ModuleService(ModuleRepository moduleRepository) {
+    public ModuleService(ModuleRepository moduleRepository, EnrolledCourseRepository enrolledCourseRepository) {
         this.moduleRepository = moduleRepository;
+        this.enrolledCourseRepository = enrolledCourseRepository;
     }
 
     public ModuleDTO convertEntityToModuleDto(Module module) {
@@ -30,10 +34,32 @@ public class ModuleService {
         return moduleDTO;
     }
 
-    public ModuleDTO getModuleByIdOnSpecifiedCourse(long courseId, long modulesId) {
+    public ModuleDTO getModuleByIdOnSpecifiedCourse(long userId, long courseId, long moduleId) {
+        // Mencari EnrolledCourse berdasarkan userId dan courseId
+        EnrolledCourse enrolledCourse = enrolledCourseRepository.findByUsersUserIdAndCourseCourseId(userId, courseId)
+                .orElseThrow(() -> new IllegalArgumentException("Enrolled course not found"));
+
+        // Mencari module berdasarkan courseId dan moduleId
         Module module = moduleRepository
-                .findByCourseCourseIdAndModuleId(courseId, modulesId)
-                .orElseThrow(()->new IllegalArgumentException("module not found"));
+                .findByCourseCourseIdAndModuleId(courseId, moduleId)
+                .orElseThrow(() -> new IllegalArgumentException("Module not found"));
+
+        // Mengecek apakah user sudah mengakses modul tersebut
+        if (enrolledCourse.hasAccessedModule(moduleId)) {
+            // Modul sudah diakses sebelumnya, langsung kembalikan data modul
+            return convertEntityToModuleDto(module);
+        }
+
+        // Mengecek apakah user memiliki poin yang cukup
+        if (enrolledCourse.getTotalPointEarned() < Module.getPointRequired()) {
+            throw new IllegalStateException("Not enough points to access this module");
+        }
+
+        // Mengurangi poin setelah pertama kali mengakses
+        enrolledCourse.setTotalPointEarned(enrolledCourse.getTotalPointEarned() - Module.getPointRequired());
+        enrolledCourse.grantAccessToModule(moduleId);  // Menandai modul ini telah diakses
+        enrolledCourseRepository.save(enrolledCourse);
+
         return convertEntityToModuleDto(module);
     }
 

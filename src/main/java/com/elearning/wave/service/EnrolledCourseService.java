@@ -66,6 +66,7 @@ public class EnrolledCourseService {
         EnrolledCourse enrolledCourse = new EnrolledCourse();
         enrolledCourse.setUsers(users.get());
         enrolledCourse.setCourse(course.get());
+        enrolledCourse.setTotalPointEarned(10);
         enrolledCourseRepository.save(enrolledCourse);
 
         return "Course enrolled success";

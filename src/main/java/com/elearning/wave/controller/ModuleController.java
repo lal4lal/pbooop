@@ -33,13 +33,16 @@ public class ModuleController {
         }
     }
 
-    @GetMapping("/{courseId}/modules/{modulesId}")
-    public ResponseEntity<ModuleDTO> getModuleByIdOnSpecifiedCourse(@PathVariable long courseId, @PathVariable long modulesId) {
+    @GetMapping("/users/{userId}/courses/{courseId}/modules/{moduleId}")
+    public ResponseEntity<ModuleDTO> getModuleByIdOnSpecifiedCourse(
+            @PathVariable long userId,
+            @PathVariable long courseId,
+            @PathVariable long moduleId) {
         try {
-            ModuleDTO moduleDTO = moduleService.getModuleByIdOnSpecifiedCourse(courseId, modulesId);
+            ModuleDTO moduleDTO = moduleService.getModuleByIdOnSpecifiedCourse(userId, courseId, moduleId);
             return new ResponseEntity<>(moduleDTO, HttpStatus.FOUND);
-        }catch (Exception e){
-            return new ResponseEntity<>(null,HttpStatus.NOT_FOUND);
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
         }
     }
 
