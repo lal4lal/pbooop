@@ -14,7 +14,7 @@ import java.util.Optional;
 @RequestMapping("/api/modules")
 @CrossOrigin
 public class QuizController {
-    private final QuizService quizService;
+    private final QuizService quizService ;
 
     @Autowired
     public QuizController(QuizService quizService) {
@@ -30,9 +30,10 @@ public class QuizController {
             return new ResponseEntity<>(null,HttpStatus.NOT_FOUND);
         }
     }
-
     @PostMapping("/quiz/submit")
     public void submitQuiz(@RequestBody QuizSubmitDTO quizSubmitDTO) {
         quizService.checkUserSubmission(quizSubmitDTO);
     }
 }
+
+//data['course'][0]['module'][i]
