@@ -7,6 +7,7 @@ import java.util.List;
 
 public class QuestionDTO {
     private long questionId;
+    private String question_type;
     private String questionText;
     private List<OptionDTO> options;
 
@@ -32,5 +33,13 @@ public class QuestionDTO {
 
     public void setOptions(List<OptionDTO> options) {
         this.options = options;
+    }
+
+    public String getQuestion_type() {
+        return question_type;
+    }
+
+    public void setQuestion_type(String question_type) {
+        this.question_type = question_type;
     }
 }

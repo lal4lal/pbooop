@@ -33,6 +33,16 @@ public class UserController {
         }
     }
 
+    @GetMapping("/{userId}")
+    public ResponseEntity<UserDTO> getUserById(@PathVariable long userId) {
+        try {
+            UserDTO userDTO = userService.convertEntityToUserDto(userService.findById(userId).orElseThrow(() -> new IllegalArgumentException("User hasn't enroll any course")));
+            return new ResponseEntity<>(userDTO, HttpStatus.FOUND);
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        }
+    }
+
     @PostMapping("/enroll")
     public ResponseEntity<String> enrollCourse(@RequestBody EnrollRequestDTO enrollRequestDTO) {
         try {
